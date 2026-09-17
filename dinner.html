@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Makan Sore Yuk!</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 40px 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      text-align: center;
+      max-width: 400px;
+      width: 100%;
+    }
+
+    .icon {
+      font-size: 60px;
+      margin-bottom: 15px;
+    }
+
+    h1 {
+      color: #d35400;
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: #555;
+      font-size: 16px;
+      line-height: 1.5;
+      margin-bottom: 25px;
+    }
+
+    .btn-container {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      position: relative;
+    }
+
+    button {
+      padding: 12px 25px;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: transform 0.2s, background-color 0.2s;
+    }
+
+    .btn-yes {
+      background-color: #2ece71;
+      color: white;
+    }
+
+    .btn-yes:hover {
+      background-color: #27ae60;
+      transform: scale(1.05);
+    }
+
+    .btn-no {
+      background-color: #e74c3c;
+      color: white;
+      position: relative;
+    }
+
+    /* Modal untuk Pesan Sukses */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      text-align: center;
+      animation: popIn 0.3s ease;
+    }
+
+    @keyframes popIn {
+      0% { transform: scale(0.7); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <div class="icon">🌆🍜</div>
+    <h1>Makan Sore Yuk!</h1>
+    <p>Sore-sore begini enak nih cari cemilan atau makan santai bareng. Kamu luang nggak sore ini?</p>
+    
+    <div class="btn-container">
+      <button class="btn-yes" onclick="terimaAjakan()">Yuk, Mau!</button>
+      <button class="btn-no" id="btnNo" onmouseover="kabur()" onclick="kabur()">Gak Bisa</button>
+    </div>
+  </div>
+
+  <!-- Modal Pop-up -->
+  <div class="modal" id="myModal">
+    <div class="modal-content">
+      <h2>Asik! 🎉</h2>
+      <p style="margin-top: 10px;">Siap-siap ya, nanti aku jemput / kita janjian jam 5 sore!</p>
+      <button class="btn-yes" style="margin-top: 15px;" onclick="tutupModal()">Oke Siap!</button>
+    </div>
+  </div>
+
+  <script>
+    // Fungsi jika menekan tombol 'Yuk, Mau!'
+    function terimaAjakan() {
+      document.getElementById('myModal').style.display = 'flex';
+    }
+
+    function tutupModal() {
+      document.getElementById('myModal').style.display = 'none';
+    }
+
+    // Fungsi interaktif: Tombol 'Gak Bisa' akan menghindar jika disentuh/didekati kursor
+    function kabur() {
+      const btnNo = document.getElementById('btnNo');
+      const x = Math.random() * (window.innerWidth - btnNo.offsetWidth - 100);
+      const y = Math.random() * (window.innerHeight - btnNo.offsetHeight - 100);
+      
+      btnNo.style.position = 'fixed';
+      btnNo.style.left = `${x}px`;
+      btnNo.style.top = `${y}px`;
+    }
+  </script>
+
+</body>
+</html>
